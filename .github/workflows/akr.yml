@@ -19,6 +19,14 @@ jobs:
       - name: Build with Maven
         run: mvn clean package
 
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          # IMPORTANT: Replace 'YOUR_IAM_ROLE_ARN_GOES_HERE' with the actual ARN of your IAM role from AWS!
+          role-to-assume: arn:aws:iam::782860593533:role/akshay
+          # This must be the AWS region where your SES sender identity is verified.
+          aws-region: ap-southeast-2 # Example: us-east-1
+
       - name: Publish to GitHub Packages
         run: mvn deploy -s settings.xml
         env:
