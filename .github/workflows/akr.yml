@@ -41,16 +41,16 @@ jobs:
         if: success()
         run: |
           aws ses send-email \
-            --from 'bhuvanraj107123@gmail.com' \
-            --destination 'ToAddresses="cherry107123@gmail.com"' \
+            --from 'akr813703@gmail.com' \
+            --destination 'ToAddresses="akr8137035@gmail.com"' \
             --message 'Subject={Data="✅ Build Success - ${{ github.repository }}"},Body={Text={Data="Build for ${{ github.repository }} on branch `${{ github.ref_name}}` was successful!\n\nCommit: `${{ github.sha}}`\nWorkflow Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}}' \
-            --region us-east-1 # Ensure this matches your aws-region above
+            --region ap-southeast-2 # Ensure this matches your aws-region above
 
       - name: Send Email Notification (on failure)
         if: failure()
         run: |
           aws ses send-email \
-            --from 'bhuvanraj107123@gmail.com' \
-            --destination 'ToAddresses="cherry107123@gmail.com"' \
+            --from 'akr813703@gmail.com' \
+            --destination 'ToAddresses="akr8137035@gmail.com"' \
             --message 'Subject={Data="❌ Build FAILED - ${{ github.repository }}"},Body={Text={Data="*ALERT:* Build for ${{ github.repository }} on branch `${{ github.ref_name}}` *FAILED!*\n\nCommit: `${{ github.sha}}`\n*Please review logs:* ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}}' \
-            --region us-east-1
+            --region ap-southeast-2
